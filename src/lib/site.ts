@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = "https://futemax.com.br";
+const DEFAULT_BASE_URL = "https://futemaxbr.vip";
 
 function resolveBaseUrl(): string {
   const raw =

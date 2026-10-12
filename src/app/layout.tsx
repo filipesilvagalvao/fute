@@ -124,7 +124,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <StructuredData data={jsonLd} />
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-1WM71PX0QJ"
+          src="https://www.googletagmanager.com/gtag/js?id=G-44GL33WR5P"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -133,7 +133,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-1WM71PX0QJ');
+            gtag('config', 'G-44GL33WR5P');
           `}
         </Script>
       </body>
