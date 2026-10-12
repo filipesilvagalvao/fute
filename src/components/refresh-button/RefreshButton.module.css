@@ -17,6 +17,16 @@
     border-color var(--transition-fast), color var(--transition-fast);
 }
 
+.buttonMd {
+  height: 38px;
+}
+
+.buttonSm {
+  height: 32px;
+  font-size: 0.8rem;
+  padding: 0 12px;
+}
+
 .button:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
@@ -47,13 +57,22 @@
   flex-shrink: 0;
 }
 
+.buttonSm .icon {
+  width: 14px;
+  height: 14px;
+}
+
 .label {
   line-height: 1;
 }
 
 @media (max-width: 480px) {
-  .button {
+  .buttonMd {
     padding: 7px 12px;
     font-size: 0.8rem;
+  }
+  .buttonSm {
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
 }

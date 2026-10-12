@@ -10,7 +10,7 @@ import { ErrorState } from "@/components/error-state/ErrorState";
 import { MatchesSkeleton } from "@/components/matches-skeleton/MatchesSkeleton";
 import { SearchBar } from "@/components/search-bar/SearchBar";
 import { ActivityIndicator } from "@/components/activity-indicator/ActivityIndicator";
-import { RefreshButton } from "@/components/refresh-button/RefreshButton";
+import { LoadMoreButton } from "@/components/load-more-button/LoadMoreButton";
 import { SiteFooter } from "@/components/site-footer/SiteFooter";
 import {
   MatchFilters,
@@ -39,6 +39,9 @@ type LoadState =
   | { kind: "loading" }
   | { kind: "success"; matches: Match[] }
   | { kind: "error"; message: string };
+
+const MATCHES_INITIAL_COUNT = 9;
+const MATCHES_PAGE_STEP = 10;
 
 function formatTodayLabel(): string {
   try {
@@ -78,6 +81,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeFilter, setActiveFilter] = useState<MatchFilter>("all");
   const [throttledUntil, setThrottledUntil] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(MATCHES_INITIAL_COUNT);
 
   const statusTick = useMatchStatusTick();
 
@@ -179,6 +183,22 @@ export default function Home() {
     });
   }, [matches, activeFilter, searchQuery, statusMap]);
 
+  const visibleMatches = useMemo(
+    () => filteredMatches.slice(0, visibleCount),
+    [filteredMatches, visibleCount]
+  );
+
+  const remainingMatches = Math.max(
+    0,
+    filteredMatches.length - visibleCount
+  );
+
+  const handleLoadMore = useCallback(() => {
+    setVisibleCount((prev) =>
+      Math.min(prev + MATCHES_PAGE_STEP, filteredMatches.length)
+    );
+  }, [filteredMatches.length]);
+
   const handleSelectMatch = useCallback((match: Match) => {
     setSelectedMatch(match);
   }, []);
@@ -237,13 +257,15 @@ export default function Home() {
       <Header
         todayLabel={todayLabel}
         shareData={headerShareData}
+        onRefresh={handleRefresh}
+        refreshThrottledUntil={throttledUntil}
       />
       <main className={styles.container}>
+        <div className={styles.activityRow}>
+          <ActivityIndicator />
+        </div>
         <div className={styles.hero}>
-          <div className={styles.heroTopRow}>
-            <h1 className={styles.heroTitle}>Jogos de hoje</h1>
-            <ActivityIndicator />
-          </div>
+          <h1 className={styles.heroTitle}>Jogos de hoje</h1>
           <p className={styles.heroSubtitle}>
             Acompanhe os jogos do dia com horários, campeonatos e canais
             disponíveis.
@@ -256,17 +278,11 @@ export default function Home() {
               value={searchQuery}
               onChange={setSearchQuery}
             />
-            <div className={styles.filterRow}>
-              <MatchFilters
-                active={activeFilter}
-                counts={counts}
-                onChange={setActiveFilter}
-              />
-              <RefreshButton
-                onRefresh={handleRefresh}
-                throttledUntil={throttledUntil}
-              />
-            </div>
+            <MatchFilters
+              active={activeFilter}
+              counts={counts}
+              onChange={setActiveFilter}
+            />
           </div>
         )}
 
@@ -280,8 +296,15 @@ export default function Home() {
         {showEmpty && <EmptyState />}
         {showResults && filteredMatches.length > 0 && (
           <MatchList
-            matches={filteredMatches}
+            matches={visibleMatches}
             onSelect={handleSelectMatch}
+          />
+        )}
+        {showResults && remainingMatches > 0 && (
+          <LoadMoreButton
+            remaining={remainingMatches}
+            chunkSize={MATCHES_PAGE_STEP}
+            onLoadMore={handleLoadMore}
           />
         )}
         {showNoMatchesForFilter && (

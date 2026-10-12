@@ -18,12 +18,12 @@
   gap: 6px;
 }
 
-.heroTopRow {
+.activityRow {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
 .heroTitle {
@@ -44,19 +44,6 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
-}
-
-.filterRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.filterRow > :first-child {
-  flex: 1;
-  min-width: 0;
 }
 
 .seoIntro {

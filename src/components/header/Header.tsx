@@ -2,13 +2,21 @@
 
 import styles from "./Header.module.css";
 import { ShareButton, type ShareData } from "@/components/share-button/ShareButton";
+import { RefreshButton } from "@/components/refresh-button/RefreshButton";
 
 type HeaderProps = {
   todayLabel: string;
   shareData: ShareData;
+  onRefresh: () => void;
+  refreshThrottledUntil: number | null;
 };
 
-export function Header({ todayLabel, shareData }: HeaderProps) {
+export function Header({
+  todayLabel,
+  shareData,
+  onRefresh,
+  refreshThrottledUntil,
+}: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -23,6 +31,11 @@ export function Header({ todayLabel, shareData }: HeaderProps) {
         </div>
 
         <div className={styles.actions}>
+          <RefreshButton
+            onRefresh={onRefresh}
+            throttledUntil={refreshThrottledUntil}
+            size="sm"
+          />
           <ShareButton shareData={shareData} size="sm" />
         </div>
       </div>

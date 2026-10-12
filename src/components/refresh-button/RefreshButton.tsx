@@ -20,16 +20,22 @@ type RefreshButtonProps = {
   onRefresh: () => void | Promise<void>;
   throttledUntil: number | null;
   label?: string;
+  size?: "sm" | "md";
 };
 
 export function RefreshButton({
   onRefresh,
   throttledUntil,
   label = "Atualizar",
+  size = "md",
 }: RefreshButtonProps) {
-  const [now, setNow] = useState<number>(() => Date.now());
+  const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
+    Promise.resolve().then(() => {
+      setNow(Date.now());
+    });
+
     if (throttledUntil === null) return;
     if (Date.now() >= throttledUntil) return;
 
@@ -41,7 +47,9 @@ export function RefreshButton({
   }, [throttledUntil]);
 
   const remainingMs =
-    throttledUntil === null ? 0 : Math.max(0, throttledUntil - now);
+    throttledUntil === null || now === null
+      ? 0
+      : Math.max(0, throttledUntil - now);
   const isThrottled = remainingMs > 0;
   const remainingSec = Math.ceil(remainingMs / 1000);
 
@@ -57,7 +65,9 @@ export function RefreshButton({
   return (
     <button
       type="button"
-      className={`${styles.button} ${isThrottled ? styles.buttonThrottled : ""}`}
+      className={`${styles.button} ${
+        size === "sm" ? styles.buttonSm : styles.buttonMd
+      } ${isThrottled ? styles.buttonThrottled : ""}`}
       onClick={handleClick}
       disabled={isThrottled}
       aria-label={ariaLabel}
