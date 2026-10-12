@@ -1,0 +1,140 @@
+.footer {
+  width: 100%;
+  background-color: var(--bg-color-2);
+  border-top: 1px solid var(--border-color-1);
+  margin-top: 32px;
+  padding: 28px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 460px;
+  min-width: 0;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(123, 212, 86, 0.45);
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-color-1);
+}
+
+.tagline {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-color-3);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+}
+
+.link {
+  font-size: 0.85rem;
+  color: var(--text-color-2);
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--primary-color);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color-1);
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-color-3);
+  letter-spacing: 0.02em;
+}
+
+.disclaimer {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-color-3);
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .nav {
+    gap: 6px 14px;
+  }
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .disclaimer {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 22px 16px 14px;
+    margin-top: 24px;
+  }
+  .brandName {
+    font-size: 1rem;
+  }
+  .tagline {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,248 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  background-color: var(--bg-color-2);
+  border: 1px solid var(--border-color-1);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp var(--transition-base) ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-color-1);
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.championship {
+  margin: 0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-color-3);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-color-1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.titleVs {
+  color: var(--text-color-3);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.statusLive {
+  background-color: rgba(255, 45, 45, 0.15);
+  color: var(--live-color);
+}
+
+.statusOther {
+  background-color: var(--bg-color-3);
+  color: var(--text-color-2);
+}
+
+.closeButton {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-color-2);
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast), border-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  background-color: var(--bg-color-3);
+  color: var(--text-color-1);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.teams {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--bg-color-3);
+  border-radius: var(--radius-md);
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.crest {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: var(--bg-color-2);
+  object-fit: contain;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .crest {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.teamName {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color-1);
+  max-width: 100%;
+  line-height: 1.25;
+}
+
+.separator {
+  color: var(--text-color-3);
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  padding-top: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-color-3);
+  font-weight: 600;
+}
+
+.noPlayer {
+  margin: 0;
+  padding: 18px;
+  background-color: var(--bg-color-3);
+  border: 1px dashed var(--border-color-1);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--text-color-2);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .backdrop {
+    padding: 0;
+  }
+  .dialog {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  .header {
+    padding: 14px 16px;
+  }
+  .body {
+    padding: 16px;
+    gap: 18px;
+  }
+  .title {
+    font-size: 1.05rem;
+  }
+}

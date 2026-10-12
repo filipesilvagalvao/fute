@@ -1,0 +1,64 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: transparent;
+  border: 1px solid var(--border-color-1);
+  border-radius: var(--radius-sm);
+  color: var(--text-color-2);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.button:hover {
+  border-color: var(--primary-color);
+  color: var(--text-color-1);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.buttonPositive {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.buttonPositive:hover {
+  background-color: rgba(123, 212, 86, 0.1);
+}
+
+.sizeMd {
+  width: 38px;
+  height: 38px;
+  padding: 0 10px;
+}
+
+.sizeSm {
+  width: 32px;
+  height: 32px;
+  padding: 0 8px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  display: block;
+  flex-shrink: 0;
+}
+
+.sizeSm .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.label {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
