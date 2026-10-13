@@ -41,7 +41,7 @@ export function VideoPlayer({ src, title = "Player" }: VideoPlayerProps) {
           src={src}
           title={title}
           className={styles.iframe}
-          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          allow="encrypted-media; picture-in-picture"
           allowFullScreen
           onError={() => setHasError(true)}
           referrerPolicy="no-referrer"
