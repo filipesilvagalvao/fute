@@ -120,6 +120,9 @@ function StructuredData({ data }: { data: object }) {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-br" className={inter.variable}>
+      <head>
+        <meta name="monetag" content="281834bbc07a85c9f35956e78fc3cd35"></meta>
+      </head>
       <body>
         {children}
         <StructuredData data={jsonLd} />
