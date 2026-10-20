@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { getMetadataBase, siteConfig } from "@/lib/site";
 import "./globals.css";
+import MonetagPopup from "@/components/MonetagPopup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -139,6 +140,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             gtag('config', 'G-44GL33WR5P');
           `}
         </Script>
+        <MonetagPopup />
       </body>
     </html>
   );
